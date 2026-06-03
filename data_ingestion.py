@@ -1,24 +1,18 @@
 import pandas as pd
 import os
 
-data_folder = "data/raw"
+folder = "data/raw"
 
-files = [f for f in os.listdir(data_folder) if f.endswith(".csv")]
+for file in os.listdir(folder):
+    if file.endswith(".csv"):
+        print("\n" + "="*60)
+        print("FILE:", file)
 
-for file in files:
-    print("\n" + "="*50)
-    print("FILE:", file)
+        df = pd.read_csv(os.path.join(folder, file))
 
-    df = pd.read_csv(os.path.join(data_folder, file))
+        print("Shape:", df.shape)
+        print("\nDtypes:")
+        print(df.dtypes)
 
-    print("\nShape:")
-    print(df.shape)
-
-    print("\nData Types:")
-    print(df.dtypes)
-
-    print("\nHead:")
-    print(df.head())
-
-    print("\nMissing Values:")
-    print(df.isnull().sum())
+        print("\nHead:")
+        print(df.head())
